@@ -42,6 +42,13 @@ app.post("/", function(req, res){
     }
 
     const request = https.request(url, options, function(response) {
+
+        if (response.statusCode === 200) {
+            res.sendFile(__dirname + "/success.html"); 
+        } else {
+            res.sendFile(__dirname + "/failure.html");
+        }
+
         response.on("data", function(data){
             console.log(JSON.parse(data));
         })
@@ -51,8 +58,12 @@ app.post("/", function(req, res){
    request.end();
 
 });
+// *** Home route redirection ***
+app.post("/failure", function(req, res){
+    res.redirect("/")
+})
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {       //process.env.PORT is to listen to heroku  ;  3000 is to local
     console.log("Server is running on port 3000");
 });
 
@@ -62,3 +73,9 @@ app.listen(3000, function () {
 
 // List ID    //https://us17.admin.mailchimp.com/lists/settings/defaults?id=1358029
 // 615f0aa67d    
+
+
+//commands use to update changes: $git
+//1. $ git add .
+//2. $ git commit -m "3rd commit"
+//3. $ git push heroku main
