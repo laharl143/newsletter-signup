@@ -1,4 +1,4 @@
-# Newsletter-signup <strong>officially Live!</strong>
+<h1>Newsletter-signup - <strong>Officially Live!</strong></h1>
 
 <br>
 <br>
